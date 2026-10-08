@@ -28,8 +28,8 @@ A small Twitter-style message board built with **Spring Boot**, **Thymeleaf**, *
 Requirements: **Java 17+** and **Maven**. IntelliJ IDEA or Eclipse can also import the project directly as a Maven project.
 
 ```bash
-git clone https://github.com/<your-username>/messages-app.git
-cd messages-app
+git clone https://github.com/<jazekumen>/messages-app.git
+cd message-app
 mvn spring-boot:run
 ```
 
