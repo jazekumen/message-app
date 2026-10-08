@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neue Nachricht</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Neue Nachricht</h1>
+    </header>
+    <div class="layout">
+        <nav>
+            <ul>
+                <li><a href="liste.html">Nachrichten</a></li>
+                <li><a href="message.html">Neue Nachricht</a></li>
+                <li><a href="register.html">Registrierung</a></li>
+            </ul>
+        </nav>
+        <main>
+            <form>
+                <fieldset>
+                    <legend>Nachricht erstellen</legend>
+                    <label for="title">Titel:</label>
+                    <input type="text" id="title" name="title" required>
+					<label for="content">Inhalt:</label>
+                    <textarea id="content" name="content" rows="5" required></textarea>
+                    <p id="charCount">Zeichenanzahl: 0</p>
+                    <label for="location">Ort:</label>
+                    <input type="text" id="location" name="location" readonly>
+                    <label for="date">Datum:</label>
+                    <input type="date" id="date" name="date" required>
+                    <button type="button" onclick="locateMe()">Ort ermitteln</button>
+                    <button type="submit">Veröffentlichen</button>
+                </fieldset>
+            </form>
+        </main>
+    </div>
+    <footer>
+        <p>&copy; 2024 Neue Nachricht</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://stevenbenner.github.io/jquery-powertip/scripts/jquery.powertip.js"></script>
+	<script>
+        function locateMe() {
+            navigator.geolocation.getCurrentPosition(geolocationSuccess);
+        }
+
+        function geolocationSuccess(position) {
+            var coords = position.coords;
+            var url = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' +
+                coords.latitude + '&lon=' + coords.longitude;
+
+            fetch(url).then(function(response) {
+                return response.json();
+            }).then(function(json) {
+                var city = json.address.city || json.address.town || json.address.village;
+                var cityElement = document.getElementById("location");
+                cityElement.value = city;
+            });
+        }
+    </script>
+	
+    <script src="js/meineScripts.js"></script>
+</body>
+</html>

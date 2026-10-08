@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alle Nutzer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="fragments :: kopfbereich('Alle Nutzer')"></header>
+<div class="layout">
+<nav th:replace="fragments :: navigation"></nav>
+
+<main id="content">
+    <ul id="messageList">
+        <li class="post" th:each="user, stat : ${users}"
+            th:classappend="${(stat.first ? 'first ' : '') + (stat.last ? 'last' : '')}">
+            <header>
+                <span class="user" th:text="${user.fullname}">Max Mustermann</span>
+                <span class="username" th:text="'@' + ${user.username}">@max</span>
+            </header>
+        </li>
+    </ul>
+    <p th:if="${#lists.isEmpty(users)}">Noch keine Nutzer registriert.</p>
+</main>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

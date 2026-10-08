@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmeldeseite</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<!-- Header (optional) -->
+<header th:replace="fragments :: kopfbereich('Anmeldung')"></header>
+
+<!-- Navigation -->
+<div class="layout">
+<nav th:replace="fragments :: navigation"></nav>
+
+<main>
+    <h1>Anmeldeseite</h1>
+    <p th:if="${param.error}" role="alert" style="color: red;">Benutzername oder Passwort ist falsch.</p>
+    <p>Bitte melden Sie sich mit Ihrem Nutzernamen und Ihrem Passwort an:</p>
+
+    <!-- Login Form -->
+    <form th:action="@{/security/spring_security_check}" method="post">
+        <div>
+            <input class="inputField" type="text" id="username" name="username" placeholder="Benutzername?" required
+                   aria-label="Benutzername">
+        </div>
+        <div>
+            <input class="inputField" type="password" id="password" name="password" placeholder="Passwort?" required
+                   aria-label="Passwort">
+        </div>
+        <div>
+            <input class="submitButton" value="Anmelden" type="submit">
+        </div>
+    </form>
+</main>
+</div>
+
+<!-- Footer -->
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

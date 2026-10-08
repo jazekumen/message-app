@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beiträge des Nutzers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script th:src="@{/js/ajax.js}"></script>
+</head>
+
+<body>
+<!-- Include Header and Navigation -->
+<header th:replace="fragments :: kopfbereich('Beiträge des Nutzers')"></header>
+<div class="layout">
+<nav th:replace="fragments :: navigation"></nav>
+
+<main id="content">
+    <!-- Initial Messages -->
+    <ul id="messageList">
+        <li class="post"
+            th:classappend="${(stat.first ? 'first ' : '') + (stat.last ? 'last' : '')}"
+            th:each="message, stat : ${messages}">
+            <header>
+                <span class="user" th:text="${message.user.fullname}">Max Mustermann</span>
+                <span class="username" th:text="'@' + ${message.user.username}">@max</span>
+                <time th:datetime="${#dates.formatISO(message.date)}"
+                      th:text="${#dates.format(message.date, 'dd.MM.yyyy HH:mm')}">01.01.2024 12:00</time>
+            </header>
+            <p th:text="${message.text}">Beispieltext</p>
+            <p class="location" th:if="${message.location != null and !#strings.isEmpty(message.location)}"
+               th:text="'Ort: ' + ${message.location}">Ort: Furtwangen</p>
+        </li>
+    </ul>
+
+
+    <script th:inline="javascript">
+        var lastClientMessage = /*[[${lastClientMessage}]]*/ 0;
+    </script>
+</main>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+</html>

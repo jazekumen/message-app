@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Überschrift</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<!-- Header Fragment -->
+<header th:fragment="kopfbereich(title)">
+    <h1 th:text="${title}">Überschrift</h1>
+</header>
+
+<!-- Navigation Fragment -->
+<nav th:fragment="navigation">
+    <ul>
+        <li><a th:href="@{/registerForm.html}">Registrierung</a></li>
+        <li><a th:href="@{/nachrichtenListe.html}">Nachrichten</a></li>
+        <li><a th:href="@{/messageForm.html}">Neue Nachricht</a></li>
+        <li><a th:href="@{/users.html}">Nutzer</a></li>
+        <li sec:authorize="!isAuthenticated()"><a th:href="@{/login.html}">Anmelden</a></li>
+        <li sec:authorize="isAuthenticated()">
+            <a th:href="@{/security/spring_security_logout}">Abmelden (<span sec:authentication="name">user</span>)</a>
+        </li>
+    </ul>
+</nav>
+
+<!-- Footer Fragment -->
+<footer th:fragment="footer">
+    <p>&copy; 2024 Nachrichten-App</p>
+</footer>
+</body>
+</html>

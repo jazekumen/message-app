@@ -1,0 +1,206 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff8e1;
+    color: #4e342e;
+}
+
+/* Header-Bereich (nur der Seitenkopf, nicht die Kopfzeilen der Beiträge) */
+body > header {
+    background-color: #ffe0b2;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 28px;
+    text-transform: uppercase;
+    color: #e65100;
+    border-bottom: 2px solid #fb8c00;
+}
+
+/* Layout-Konfiguration */
+.layout {
+    display: flex;
+}
+
+/* Navigation */
+nav {
+    width: 250px;
+    background-color: #ffe0b2;
+    padding: 20px;
+    border-right: 2px solid #fb8c00;
+}
+
+/* Navigations-Listen */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 15px 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #bf360c;
+    font-weight: bold;
+    padding: 10px;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover-Effekt für Navigation */
+nav ul li a:hover {
+    background-color: #fb8c00;
+    color: white;
+}
+
+/* Hauptbereich */
+main {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff8e1;
+}
+
+/* Beitrags-Container */
+#content {
+    padding: 20px;
+    background-color: #fff8e1;
+    box-sizing: border-box;
+}
+
+/* Einzelne Beiträge */
+.post {
+    background-color: #e0e0e0;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #d0d0d0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+/* Abgerundete Ecken für erste und letzte Beiträge */
+.post.first {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.post.last {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+/* Header von Beiträgen */
+.post header {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+/* Benutzerinformationen im Beitrag */
+.post .user {
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Benutzername im Beitrag */
+.post .username {
+    font-style: italic;
+    color: #666;
+    font-size: 14px;
+}
+
+.post time {
+    font-size: 12px;
+    color: #999;
+    align-self: baseline;
+}
+
+/* Inhalt von Beiträgen */
+.post p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Hover-Effekt für Beiträge */
+.post:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #f5f5f5;
+}
+
+/* Footer-Bereich */
+footer {
+    background-color: #ffe0b2;
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid #fb8c00;
+}
+
+/* Nachrichtenliste */
+#messageList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post header {
+    align-items: baseline;
+    gap: 8px;
+}
+
+.post time {
+    margin-left: auto;
+}
+
+.post .location {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #8d6e63;
+}
+
+/* Formulare */
+form label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea {
+    width: 100%;
+    max-width: 420px;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #d7b98c;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+form textarea {
+    height: 90px;
+}
+
+form button,
+form input[type="submit"] {
+    margin-top: 12px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fb8c00;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+form button:hover,
+form input[type="submit"]:hover {
+    background-color: #e65100;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrierung</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <!-- PowerTip CSS -->
+    <link rel="stylesheet" href="https://stevenbenner.github.io/jquery-powertip/styles/jquery.powertip.css">
+</head>
+
+<body>
+<header th:replace="fragments :: kopfbereich('Registrierung')"></header>
+<div class="layout">
+<nav th:replace="fragments :: navigation"></nav>
+
+<main>
+    <!-- Error Message -->
+    <div th:if="${fehler != null}" role="alert" style="color: red;">
+        <p th:text="'Fehler: ' + ${fehler}"></p>
+    </div>
+
+    <!-- Registration Form -->
+    <form th:action="@{/registerSave.html}" method="post">
+        <fieldset>
+            <legend>Benutzerdaten</legend>
+
+            <!-- Username -->
+            <label for="username">Benutzername:</label>
+            <input type="text" id="username" name="username" th:value="${username}" placeholder="Benutzername eingeben" required
+                   title="Bitte geben Sie Ihren Benutzernamen ein." aria-label="Benutzername">
+
+            <!-- Password -->
+            <label for="password">Passwort:</label>
+            <input type="password" id="password" name="password" placeholder="Passwort eingeben" required
+                   title="Wählen Sie ein sicheres Passwort." aria-label="Passwort">
+
+            <!-- Full Name -->
+            <label for="fullname">Vor- und Nachname:</label>
+            <input type="text" id="fullname" name="fullname" th:value="${fullname}" placeholder="Vor- und Nachname eingeben"
+                   title="Geben Sie Ihren vollständigen Namen ein." aria-label="Vor- und Nachname">
+
+            <!-- Email -->
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" name="email" th:value="${email}" placeholder="E-Mail-Adresse eingeben" required
+                   title="Geben Sie Ihre E-Mail-Adresse ein." aria-label="E-Mail-Adresse">
+        </fieldset>
+
+        <!-- Submit Button -->
+        <button type="submit" style="margin-top: 10px;">Registrieren</button>
+    </form>
+</main>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://stevenbenner.github.io/jquery-powertip/scripts/jquery.powertip.js"></script>
+<script th:src="@{/js/meineScripts.js}"></script>
+
+</body>
+</html>

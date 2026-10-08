@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrierung erfolgreich</title>
+    <!-- Add the CSS link here -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<!-- Include Header and Navigation -->
+<header th:replace="fragments :: kopfbereich('Registrierung erfolgreich')"></header>
+<div class="layout">
+<nav th:replace="fragments :: navigation"></nav>
+
+<main>
+    <h1>Registrierung erfolgreich!</h1>
+    <p>Der Benutzer wurde erfolgreich registriert.</p>
+    <p><a th:href="@{/login.html}">Jetzt anmelden</a></p>
+</main>
+</div>
+
+<footer th:replace="fragments :: footer"></footer>
+</body>
+
+</html>

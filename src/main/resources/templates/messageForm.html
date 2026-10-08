@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nachricht schreiben</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <!-- PowerTip CSS -->
+    <link rel="stylesheet" href="https://stevenbenner.github.io/jquery-powertip/styles/jquery.powertip.css">
+</head>
+<body>
+<!-- Include Header and Navigation -->
+<header th:replace="fragments :: kopfbereich('Nachricht schreiben')"></header>
+<div class="layout">
+<nav th:replace="fragments :: navigation"></nav>
+
+<main>
+    <h1>Neue Nachricht schreiben</h1>
+    <p th:if="${param.error}" role="alert" style="color: red;">Die Nachricht konnte nicht gespeichert werden. Bitte erneut versuchen.</p>
+    <form th:action="@{/createMessage.html}" method="post">
+        <fieldset>
+            <legend>Nachricht erstellen</legend>
+
+            <!-- Content -->
+            <label for="messageText">Nachricht:</label>
+            <textarea id="messageText" name="messageText" maxlength="140" placeholder="Schreibe deine Nachricht hier..."
+                      required title="Nachricht darf maximal 140 Zeichen lang sein." aria-label="Nachricht"></textarea>
+            <p id="charCount">Zeichenanzahl: 0</p>
+
+            <!-- Location -->
+            <label for="location">Ort:</label>
+            <input type="text" id="location" name="location" placeholder="Ort ermitteln..." readonly>
+            <button type="button" onclick="locateMe()">Ort ermitteln</button>
+        </fieldset>
+
+        <button type="submit">Veröffentlichen</button>
+    </form>
+</main>
+</div>
+
+<!-- Include Footer -->
+<footer th:replace="fragments :: footer"></footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://stevenbenner.github.io/jquery-powertip/scripts/jquery.powertip.js"></script>
+<script>
+    // Geolocation functionality
+    function locateMe() {
+        navigator.geolocation.getCurrentPosition(geolocationSuccess);
+    }
+
+    function geolocationSuccess(position) {
+        var coords = position.coords;
+        var url = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' +
+            coords.latitude + '&lon=' + coords.longitude;
+
+        fetch(url).then(function(response) {
+            return response.json();
+        }).then(function(json) {
+            var city = json.address.city || json.address.town || json.address.village;
+            var cityElement = document.getElementById("location");
+            cityElement.value = city;
+        });
+    }
+</script>
+<script th:src="@{/js/meineScripts.js}"></script>
+</body>
+</html>

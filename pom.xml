@@ -1,0 +1,117 @@
+<!--======================================================================
+  Dies ist die zentrale Maven-Konfigurationsdatei für Ihr Projekt
+  Eine komplette Dokumentation aller Elemente finden Sie unter:
+  http://maven.apache.org/pom.html
+=======================================================================-->
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--======================================================================
+      Das parent-Element referenziert eine weitere Konfigurationsdatei, die
+      an dieser Stelle "importiert" wird. Dort sind Informationen abgelegt,
+      die in allen Projekten verwendet werden sollen (z.B. die Versionen der
+      zu verwendenden Bibliotheken). Stellen Sie es sich wie eine Vererbung
+      vor, dieses Projekt erweitert die im parent bereits definierten
+      Konfigurationen. Wenn Sie das Maven in Eclipse verwenden (m2e), dann
+      können Sie unten im Reiter "Effective POM" die zusammengeführte
+      Konfigurationsdatei anschauen.
+    =======================================================================-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.7.17</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
+    </properties>
+
+    <!--======================================================================
+      Das artifactId-Element definiert den Namen, den das Projekt-Paket am
+      Ende des Erstellungsprozesses bekommen wird.
+    =======================================================================-->
+    <groupId>de.hfu</groupId>
+    <artifactId>messages</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <!--======================================================================
+      Mit dem dependencies-Element werden Bibliotheken (jar-Dateien) einge-
+      bunden, die in diesem Projekt verwendet werden sollen.
+    =======================================================================-->
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+           Diese Abhängigkeit benötigen wir erst, wenn wir Web-Anwendungen
+           erstellen wollen.
+         :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+           Diese Abhängigkeit benötigen wir erst, wenn wir dynamische Seiten
+           mittels Thymeleaf erstellen wollen.
+         :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+           Diese Abhängigkeiten benötigen wir erst, wenn wir unsere Web-Anwendung
+           absichern wollen.
+         :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+           <groupId>org.thymeleaf.extras</groupId>
+           <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+           Eingebettete H2-Datenbank: ersetzt das HFU-Backend, die App läuft
+           damit ohne externen Server.
+         :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.3.232</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
